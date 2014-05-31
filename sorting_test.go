@@ -74,3 +74,13 @@ func TestCoctailSort(t *testing.T) {
 		}
 	}
 }
+
+func TestGnomeSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := GnomeSort(testCase.input)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Coctail sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}

@@ -63,3 +63,24 @@ func CoctailSort(xs []int) []int {
 	}
 	return xs
 }
+
+// ****************************************
+
+func GnomeSort(xs []int) []int {
+	i := 1
+	for i < len(xs) {
+		if i == 0 {
+			i = 1
+		}
+		
+		if xs[i-1] <= xs[i] {
+			i++
+		} else {
+			temp := xs[i]
+			xs[i] = xs[i-1]
+			xs[i-1] = temp
+			i--
+		}
+	}
+	return xs
+}
