@@ -64,3 +64,13 @@ func TestInsertionSort(t *testing.T) {
 		}
 	}
 }
+
+func TestCoctailSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := CoctailSort(testCase.input)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Coctail sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}
