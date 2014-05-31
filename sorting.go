@@ -12,3 +12,18 @@ func BubbleSort(xs []int) []int {
 	}
 	return xs
 }
+
+func InsertionSort(xs []int) []int {
+	for i:=0; i<len(xs)-1; i++ {
+		indexMin := i
+		for j:=i+1; j<len(xs); j++ {
+			if xs[j] < xs[indexMin] {
+				indexMin = j
+			}
+		}
+		temp := xs[i]
+		xs[i] = xs[indexMin]
+		xs[indexMin] = temp
+	}
+	return xs
+}
