@@ -33,12 +33,12 @@ func InsertionSort(xs []int) []int {
 // ****************************************
 
 func CoctailSort(xs []int) []int {
-	for {
-		swapped := false
-		left := 0
-		right := len(xs)-1
+	swapped := true
+	
+	for swapped {
+		swapped = false
 		
-		for i:=left; i<right-1; i++ {
+		for i:=0; i<len(xs)-2; i++ {
 			if xs[i] > xs[i+1] {
 				temp := xs[i]
 				xs[i] = xs[i+1]
@@ -46,11 +46,13 @@ func CoctailSort(xs []int) []int {
 				swapped = true
 			}
 		}
+		
 		if !swapped {
 			return xs
 		}
+		swapped = false
 		
-		for i:=right-1; i>=left; i-- {
+		for i:=len(xs)-2; i>=0; i-- {
 			if xs[i] > xs[i+1] {
 				temp := xs[i]
 				xs[i] = xs[i+1]
@@ -58,11 +60,6 @@ func CoctailSort(xs []int) []int {
 				swapped = true
 			}
 		}
-		if !swapped {
-			return xs
-		}
-		
-		left++
-		right--
 	}
+	return xs
 }
