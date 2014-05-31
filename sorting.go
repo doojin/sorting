@@ -13,6 +13,8 @@ func BubbleSort(xs []int) []int {
 	return xs
 }
 
+// ****************************************
+
 func InsertionSort(xs []int) []int {
 	for i:=0; i<len(xs)-1; i++ {
 		indexMin := i
@@ -28,6 +30,8 @@ func InsertionSort(xs []int) []int {
 	return xs
 }
 
+// ****************************************
+
 func CoctailSort(xs []int) []int {
 	for {
 		swapped := false
@@ -42,11 +46,9 @@ func CoctailSort(xs []int) []int {
 				swapped = true
 			}
 		}
-		
 		if !swapped {
 			return xs
 		}
-		
 		
 		for i:=right-1; i>=left; i-- {
 			if xs[i] > xs[i+1] {
@@ -56,7 +58,6 @@ func CoctailSort(xs []int) []int {
 				swapped = true
 			}
 		}
-		
 		if !swapped {
 			return xs
 		}
