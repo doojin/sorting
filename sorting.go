@@ -15,7 +15,7 @@ func BubbleSort(xs []int) []int {
 
 // ****************************************
 
-func InsertionSort(xs []int) []int {
+func SelectionSort(xs []int) []int {
 	for i:=0; i<len(xs)-1; i++ {
 		indexMin := i
 		for j:=i+1; j<len(xs); j++ {
@@ -80,6 +80,21 @@ func GnomeSort(xs []int) []int {
 			xs[i] = xs[i-1]
 			xs[i-1] = temp
 			i--
+		}
+	}
+	return xs
+}
+
+// ****************************************
+
+func InsertionSort(xs []int) []int {
+	for i:=1; i<len(xs); i++ {
+		prevIndex := i-1
+		current := xs[i]
+		for prevIndex >= 0 && xs[prevIndex] > current {
+			xs[prevIndex+1] = xs[prevIndex]
+			xs[prevIndex] = current
+			prevIndex--
 		}
 	}
 	return xs

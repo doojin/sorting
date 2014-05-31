@@ -55,12 +55,12 @@ func TestBubbleSort(t *testing.T) {
 	}
 }
 
-func TestInsertionSort(t *testing.T) {
+func TestSelectionSort(t *testing.T) {
 	testCases := getTestCases()
 	for _, testCase := range(testCases) {
-		output := InsertionSort(testCase.input)
+		output := SelectionSort(testCase.input)
 		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Insertion sort test error. Expected:", testCase.expected, "got:", output)
+			t.Error("Selection sort test error. Expected:", testCase.expected, "got:", output)
 		}
 	}
 }
@@ -81,6 +81,16 @@ func TestGnomeSort(t *testing.T) {
 		output := GnomeSort(testCase.input)
 		if !reflect.DeepEqual(testCase.expected, output) {
 			t.Error("Gnome sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}
+
+func TestInsertionSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := InsertionSort(testCase.input)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Insertion sort test error. Expected:", testCase.expected, "got:", output)
 		}
 	}
 }
