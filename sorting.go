@@ -99,3 +99,29 @@ func InsertionSort(xs []int) []int {
 	}
 	return xs
 }
+
+// ****************************************
+
+func QuickSort(xs []int, start int, end int) []int {
+	partition := func(xs []int, start int, end int) int {
+		mark := start
+		for i:=start; i<=end; i++ {
+			if xs[i] <= xs[end] {
+				temp := xs[mark]
+				xs[mark] = xs[i]
+				xs[i] = temp
+				mark++
+			}
+		}
+		return mark-1
+	}
+	
+	if len(xs) == 0 || start >= end{
+		return xs
+	}
+	
+	pivot := partition(xs, start, end)
+	QuickSort(xs, start, pivot-1)
+	QuickSort(xs, pivot+1, end)
+	return xs
+}

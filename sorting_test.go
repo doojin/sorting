@@ -94,3 +94,13 @@ func TestInsertionSort(t *testing.T) {
 		}
 	}
 }
+
+func TestQuickSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := QuickSort(testCase.input, 0, len(testCase.input)-1)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Quick sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}
