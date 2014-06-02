@@ -104,3 +104,13 @@ func TestQuickSort(t *testing.T) {
 		}
 	}
 }
+
+func TestMergeSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := MergeSort(testCase.input)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Merge sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}

@@ -1,5 +1,7 @@
 package sorting
 
+import "math"
+
 func BubbleSort(xs []int) []int {
 	for i:=0; i<len(xs)-1; i++ {
 		for j:=0; j<len(xs)-i-1; j++ {
@@ -124,4 +126,44 @@ func QuickSort(xs []int, start int, end int) []int {
 	QuickSort(xs, start, pivot-1)
 	QuickSort(xs, pivot+1, end)
 	return xs
+}
+
+// ****************************************
+
+func MergeSort(xs []int) []int {
+	merge := func(xs1 []int, xs2 []int) []int {
+		sorted := make([]int, len(xs1)+len(xs2))
+		var i1, i2, curr int
+		for i1 < len(xs1) || i2 < len(xs2) {
+			if i1 < len(xs1) && i2 < len(xs2) {
+				if xs1[i1] < xs2[i2] {
+					sorted[curr] = xs1[i1]
+					i1++
+				} else {
+					sorted[curr] = xs2[i2]
+					i2++
+				}
+				curr++
+			} else {
+				if i1 < len(xs1) {
+					sorted[curr] = xs1[i1]
+					i1++
+				}
+				if i2 < len(xs2) {
+					sorted[curr] = xs2[i2]
+					i2++
+				}
+				curr++
+			}
+		}
+		return sorted
+	}
+	
+	if len(xs) < 2 {
+		return xs
+	}
+	middle := int(math.Ceil(float64(len(xs)/2)))
+	leftSlice := xs[0:middle]
+	rightSlice := xs[middle:]
+	return merge(MergeSort(leftSlice), MergeSort(rightSlice))
 }
