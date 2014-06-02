@@ -131,6 +131,7 @@ func QuickSort(xs []int, start int, end int) []int {
 // ****************************************
 
 func MergeSort(xs []int) []int {
+	// Merging 2 slices into the one (sorted)
 	merge := func(xs1 []int, xs2 []int) []int {
 		sorted := make([]int, len(xs1)+len(xs2))
 		var i1, i2, curr int
@@ -166,4 +167,60 @@ func MergeSort(xs []int) []int {
 	leftSlice := xs[0:middle]
 	rightSlice := xs[middle:]
 	return merge(MergeSort(leftSlice), MergeSort(rightSlice))
+}
+
+// ****************************************
+
+func TreeSort(xs []int) []int {
+
+	// Structure, which the binary tree will be made of
+	type Tree struct {
+		left *Tree
+		right *Tree
+		value int
+	}
+	var insert func(node *Tree, tree *Tree)
+	var traverse func(tree *Tree)
+	
+	root := new(Tree)
+	result := make([]int, 0)
+	
+	// Inserting new element to the left/right depending on it's value
+	insert = func(node *Tree, tree *Tree) {
+		if node.value > tree.value {
+			if node.left == nil {
+				node.left = tree
+			} else {
+				insert(node.left, tree)
+			}
+		} else {
+			if node.right == nil {
+				node.right = tree
+			} else {
+				insert(node.right, tree)
+			}
+		}
+	}
+	
+	// Transform binary tree to result slice
+	traverse = func(tree *Tree) {
+		if tree.left != nil {
+			traverse(tree.left)
+		}
+		result = append(result, tree.value)
+		if tree.right != nil {
+			traverse(tree.right)
+		}
+	}
+	
+	if len(xs) == 0 {
+		return xs
+	}
+	
+	root.value = xs[0]
+	for i:=1; i<len(xs); i++ {
+		insert(root, &Tree {value: xs[i]})
+	}
+	traverse(root)
+	return result
 }

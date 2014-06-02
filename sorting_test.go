@@ -114,3 +114,13 @@ func TestMergeSort(t *testing.T) {
 		}
 	}
 }
+
+func TestTreeSort(t *testing.T) {
+	testCases := getTestCases()
+	for _, testCase := range(testCases) {
+		output := TreeSort(testCase.input)
+		if !reflect.DeepEqual(testCase.expected, output) {
+			t.Error("Tree sort test error. Expected:", testCase.expected, "got:", output)
+		}
+	}
+}
