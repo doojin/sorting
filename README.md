@@ -4,6 +4,7 @@ Go Sorting
 Array sorting algorithms implemented in Go
 
 Algorithms implemented:
+- Stupid sorting
 - Bubble sorting
 - Selection sorting
 - Coctail sorting
@@ -39,3 +40,11 @@ Examples:
 
 		// and others...
 	}
+
+	
+Output:
+
+	[-45 -5 0 13 28 112]
+	[-45 -5 0 13 28 112]
+	[-45 -5 0 13 28 112]
+	[-45 -5 0 13 28 112]
