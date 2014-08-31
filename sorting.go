@@ -3,12 +3,10 @@ package sorting
 import "math"
 
 func BubbleSort(xs []int) []int {
-	for i:=0; i<len(xs)-1; i++ {
-		for j:=0; j<len(xs)-i-1; j++ {
+	for i := 0; i < len(xs)-1; i++ {
+		for j := 0; j < len(xs)-i-1; j++ {
 			if xs[j] > xs[j+1] {
-				temp := xs[j]
-				xs[j] = xs[j+1]
-				xs[j+1] = temp
+				xs[j], xs[j+1] = xs[j+1], xs[j]
 			}
 		}
 	}
@@ -18,16 +16,14 @@ func BubbleSort(xs []int) []int {
 // ****************************************
 
 func SelectionSort(xs []int) []int {
-	for i:=0; i<len(xs)-1; i++ {
+	for i := 0; i < len(xs)-1; i++ {
 		indexMin := i
-		for j:=i+1; j<len(xs); j++ {
+		for j := i + 1; j < len(xs); j++ {
 			if xs[j] < xs[indexMin] {
 				indexMin = j
 			}
 		}
-		temp := xs[i]
-		xs[i] = xs[indexMin]
-		xs[indexMin] = temp
+		xs[i], xs[indexMin] = xs[indexMin], xs[i]
 	}
 	return xs
 }
@@ -36,29 +32,25 @@ func SelectionSort(xs []int) []int {
 
 func CoctailSort(xs []int) []int {
 	swapped := true
-	
+
 	for swapped {
 		swapped = false
-		
-		for i:=0; i<len(xs)-2; i++ {
+
+		for i := 0; i < len(xs)-2; i++ {
 			if xs[i] > xs[i+1] {
-				temp := xs[i]
-				xs[i] = xs[i+1]
-				xs[i+1] = temp
+				xs[i], xs[i+1] = xs[i+1], xs[i]
 				swapped = true
 			}
 		}
-		
+
 		if !swapped {
 			return xs
 		}
 		swapped = false
-		
-		for i:=len(xs)-2; i>=0; i-- {
+
+		for i := len(xs) - 2; i >= 0; i-- {
 			if xs[i] > xs[i+1] {
-				temp := xs[i]
-				xs[i] = xs[i+1]
-				xs[i+1] = temp
+				xs[i], xs[i+1] = xs[i+1], xs[i]
 				swapped = true
 			}
 		}
@@ -74,13 +66,11 @@ func GnomeSort(xs []int) []int {
 		if i == 0 {
 			i = 1
 		}
-		
+
 		if xs[i-1] <= xs[i] {
 			i++
 		} else {
-			temp := xs[i]
-			xs[i] = xs[i-1]
-			xs[i-1] = temp
+			xs[i], xs[i-1] = xs[i-1], xs[i]
 			i--
 		}
 	}
@@ -90,8 +80,8 @@ func GnomeSort(xs []int) []int {
 // ****************************************
 
 func InsertionSort(xs []int) []int {
-	for i:=1; i<len(xs); i++ {
-		prevIndex := i-1
+	for i := 1; i < len(xs); i++ {
+		prevIndex := i - 1
 		current := xs[i]
 		for prevIndex >= 0 && xs[prevIndex] > current {
 			xs[prevIndex+1] = xs[prevIndex]
@@ -107,21 +97,19 @@ func InsertionSort(xs []int) []int {
 func QuickSort(xs []int, start int, end int) []int {
 	partition := func(xs []int, start int, end int) int {
 		mark := start
-		for i:=start; i<=end; i++ {
+		for i := start; i <= end; i++ {
 			if xs[i] <= xs[end] {
-				temp := xs[mark]
-				xs[mark] = xs[i]
-				xs[i] = temp
+				xs[mark], xs[i] = xs[i], xs[mark]
 				mark++
 			}
 		}
-		return mark-1
+		return mark - 1
 	}
-	
-	if len(xs) == 0 || start >= end{
+
+	if len(xs) == 0 || start >= end {
 		return xs
 	}
-	
+
 	pivot := partition(xs, start, end)
 	QuickSort(xs, start, pivot-1)
 	QuickSort(xs, pivot+1, end)
@@ -159,11 +147,11 @@ func MergeSort(xs []int) []int {
 		}
 		return sorted
 	}
-	
+
 	if len(xs) < 2 {
 		return xs
 	}
-	middle := int(math.Ceil(float64(len(xs)/2)))
+	middle := int(math.Ceil(float64(len(xs) / 2)))
 	leftSlice := xs[0:middle]
 	rightSlice := xs[middle:]
 	return merge(MergeSort(leftSlice), MergeSort(rightSlice))
@@ -175,16 +163,16 @@ func TreeSort(xs []int) []int {
 
 	// Structure, which the binary tree will be made of
 	type Tree struct {
-		left *Tree
+		left  *Tree
 		right *Tree
 		value int
 	}
 	var insert func(node *Tree, tree *Tree)
 	var traverse func(tree *Tree)
-	
+
 	root := new(Tree)
 	result := make([]int, 0)
-	
+
 	// Inserting new element to the left/right depending on it's value
 	insert = func(node *Tree, tree *Tree) {
 		if node.value > tree.value {
@@ -201,7 +189,7 @@ func TreeSort(xs []int) []int {
 			}
 		}
 	}
-	
+
 	// Transform binary tree to result slice
 	traverse = func(tree *Tree) {
 		if tree.left != nil {
@@ -212,14 +200,14 @@ func TreeSort(xs []int) []int {
 			traverse(tree.right)
 		}
 	}
-	
+
 	if len(xs) == 0 {
 		return xs
 	}
-	
+
 	root.value = xs[0]
-	for i:=1; i<len(xs); i++ {
-		insert(root, &Tree {value: xs[i]})
+	for i := 1; i < len(xs); i++ {
+		insert(root, &Tree{value: xs[i]})
 	}
 	traverse(root)
 	return result
