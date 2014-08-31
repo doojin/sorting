@@ -1,7 +1,7 @@
 language: go
 
 install:
-  - go get github.com/bmizerany/assert
+  - go get github.com/stretchr/testify/assert
 
 go:
   - 1.0
