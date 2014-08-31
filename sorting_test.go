@@ -1,7 +1,7 @@
 package sorting
 
 import (
-	"reflect"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -45,71 +45,55 @@ var testCases = []TestCase{
 func TestBubbleSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := BubbleSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Bubble sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestSelectionSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := SelectionSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Selection sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestCoctailSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := CoctailSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Coctail sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestGnomeSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := GnomeSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Gnome sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestInsertionSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := InsertionSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Insertion sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestQuickSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := QuickSort(testCase.input, 0, len(testCase.input)-1)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Quick sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestMergeSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := MergeSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Merge sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
 
 func TestTreeSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := TreeSort(testCase.input)
-		if !reflect.DeepEqual(testCase.expected, output) {
-			t.Error("Tree sort test error. Expected:", testCase.expected, "got:", output)
-		}
+		assert.Equal(t, testCase.expected, output)
 	}
 }
