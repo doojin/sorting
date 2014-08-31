@@ -2,6 +2,21 @@ package sorting
 
 import "math"
 
+func StupidSort(xs []int) []int {
+	i := 0
+	for i < len(xs)-1 {
+		if xs[i] > xs[i+1] {
+			xs[i], xs[i+1] = xs[i+1], xs[i]
+			i = 0
+		} else {
+			i++
+		}
+	}
+	return xs
+}
+
+// ****************************************
+
 func BubbleSort(xs []int) []int {
 	for i := 0; i < len(xs)-1; i++ {
 		for j := 0; j < len(xs)-i-1; j++ {

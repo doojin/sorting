@@ -42,6 +42,13 @@ var testCases = []TestCase{
 	},
 }
 
+func TestStupudSort(t *testing.T) {
+	for _, testCase := range testCases {
+		output := StupidSort(testCase.input)
+		assert.Equal(t, testCase.expected, output)
+	}
+}
+
 func TestBubbleSort(t *testing.T) {
 	for _, testCase := range testCases {
 		output := BubbleSort(testCase.input)
